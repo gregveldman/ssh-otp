@@ -1,7 +1,7 @@
 #!/bin/sh
 
 OTP_STATE_DIR=~/.otp_state
-DEBUG=1		# set to anything to enable debug messages
+DEBUG=		# set to anything to enable debug messages
 DELAY_TIME=2	# time to sleep to slow OTP guessing attempts
 
 do_die () {
@@ -18,17 +18,11 @@ do_die () {
     fi
 }
 
-# declare -A seeds
-# seeds=( ["test"]="AA" \
-# ["test2"]="AA" \
-# ["anvil"]="AA" )
-
 if [ $# -ne 1 ]
 then
     do_die 1 "Invalid number of args: $#."
 fi
 
-# secret=${seeds[$1]}
 secret=$(cat 2>/dev/null "$OTP_STATE_DIR/secrets/$1")
 if [ -z "$secret" ]
 then
